@@ -1,0 +1,33 @@
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Edit</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action = "" th:action= "@{/save}"  method="post" th:object="${country}">
+                <input type = "hidden"  name = "id" th:value="${country.id}">
+                    <div class="form-group">
+                        <label class="col-form-label1">Title:</label>
+                        <input type="text" name="postTitle" th:value="${country.postTitle}">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-form-label2">Body:</label>
+                        <input type="text" name="postBody" th:value="${country.postBody}">
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

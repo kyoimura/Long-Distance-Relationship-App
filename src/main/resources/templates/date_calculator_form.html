@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Main</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <link href="assets/css/comments.css" rel="stylesheet" >
+</head>
+  <body>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+
+      <div class="d-flex align-items-center justify-content-between">
+        <a href="/index" class="logo d-flex align-items-center">
+          <span class="d-none d-lg-block">Couples</span>
+        </a>
+      </div><!-- End Logo -->
+
+
+      <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+
+          <li class="nav-item dropdown pe-3">
+
+            <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+              <div class="dashboard__user">
+                <h2 th:text="${userdetail.username}" class="dashboard__user-name">User's Name</h2>
+              </div>
+            </a><!-- End Profile Iamge Icon -->
+
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+              <li>
+                <span sec:authorize="isAuthenticated"><a th:href="@{/logout}">Logout</a></span>
+              </li>
+
+            </ul><!-- End Profile Dropdown Items -->
+          </li><!-- End Profile Nav -->
+
+        </ul>
+      </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+
+
+      <main>
+        <div class="pagetitle">
+          <h1>Days Apart</h1>
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/index">Home</a></li>
+            </ol>
+          </nav>
+        </div><!-- End Page Title -->
+
+        <form action="/date-calculator" method="post">
+          <label for="endDate">Input End Date and Time:</label>
+          <input type="datetime-local" id="endDate" name="endDate" required />
+
+          <!-- Your other form elements -->
+
+          <button type="submit">Calculate</button>
+        </form>
+
+        <!-- Displays End Date only if User inputs right then -->
+        <div th:if="${endDate}">
+          <h2>End Date and Time: <span th:text="${#temporals.format(endDate, 'M/d/yyyy HH:mm:ss')}"></span></h2>
+        </div>
+
+
+        <!-- Display the calculated days between dates (if available) -->
+      <p th:if="${daysBetween}">
+        Days Between: <span id="daysBetweenValue" th:text="${daysBetween}"></span>
+        <span th:if="${daysBetween <= 0}"> - End Date Reached!</span>
+      </p>
+    </main>
+  </body>
+</html>
+

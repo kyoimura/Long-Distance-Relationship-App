@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Main</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <link href="assets/css/comments.css" rel="stylesheet" >
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="/index" class="logo d-flex align-items-center">
+            <span class="d-none d-lg-block">Couples</span>
+        </a>
+    </div><!-- End Logo -->
+
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+
+            <li class="nav-item dropdown pe-3">
+
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <div class="dashboard__user">
+                        <h2 th:text="${userdetail.username}" class="dashboard__user-name">User's Name</h2>
+                    </div>
+                </a><!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+
+                    <li>
+                        <span sec:authorize="isAuthenticated"><a th:href="@{/logout}">Logout</a></span>
+                    </li>
+
+                </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
+
+        </ul>
+    </nav><!-- End Icons Navigation -->
+
+</header><!-- End Header -->
+
+
+
+<main>
+
+    <div class="pagetitle">
+        <h1>Comment</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/index">Home</a></li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" >New Message</button>
+
+    <section>
+        <div class="container">
+            <div class="row-new">
+                <div class="column-new">
+                    <div th:if="${goalName != null}">
+                        <h2>Your Current Goal: <span th:text="${goalName}"></span></h2>
+                    </div>
+                    <div th:if="${#lists.isEmpty(countries)}">
+                        No comments available.
+                    </div>
+                    <div th:each="country:${countries}" class="comments-box p-3 mt-3">
+
+                        <div class="title-and-username">
+                            <h2 th:text="${country.postTitle}"></h2>
+                            <h2 th:text="${userdetail.username}"></h2>
+                        </div>
+                        <div class="comment-body" th:text="${country.postBody}"></div>
+                        <div class="btn-group">
+                            <a th:href="@{/countries/update/{id} (id = ${country.id})}">Edit</a>
+                            <a th:href="@{/countries/delete/{id} (id = ${country.id})}">Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column-new">
+                    <div th:if="${partnerGoalName != null}">
+                        <h2>Partner's Current Goal: <span th:text="${partnerGoalName}"></span></h2>
+                    </div>
+                    <div th:if="${#lists.isEmpty(partnerComments)}">
+                        No comments available.
+                    </div>
+                    <div th:each="partnerComment:${partnerComments}" class="comments-box p-3 mt-3">
+                        <div class="title-and-username">
+                            <h2 th:text="${partnerComment.postTitle}"></h2>
+                            <h2 th:text="${partnerUsername}"></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+
+
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Comment</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action= "@{countries/addNew}"  method="post">
+                    <div class="flex justify-center items-center min-h-screen bg-[#ccc]">
+                        <div class="flex space-x-4">
+                            <div class="flex-1">
+                                <div class="h-80 px-7 w-[700px] rounded-[12px] bg-white p-4">
+                                    <textarea class="h-40 px-3 text-sm py-1 mt-5 outline-none border-pink-300 w-full resize-none border rounded-lg placeholder:text-sm" id="postTitle" name="postTitle" placeholder="Add your title"></textarea>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="h-80 px-7 w-[700px] rounded-[12px] bg-white p-4">
+                                    <textarea class="h-40 px-3 text-sm py-1 mt-5 outline-none border-pink-300 w-full resize-none border rounded-lg placeholder:text-sm" name="postBody" placeholder="Add your comments here"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mt-2"> <button class="h-12 w-[150px] bg-blue-400 text-sm text-red rounded-lg transition-all cursor-pointer hover:bg-blue-600">Submit comment</button></div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/chart.js/chart.umd.js"></script>
+<script src="assets/vendor/echarts/echarts.min.js"></script>
+<script src="assets/vendor/quill/quill.min.js"></script>
+<script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+<script src="assets/vendor/tinymce/tinymce.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

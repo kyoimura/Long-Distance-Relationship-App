@@ -1,0 +1,52 @@
+/* Styles for the comment box container */
+.comments-box {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+/* Styles for the comment title */
+.comment-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.title-and-username {
+    display: flex; /* Use flexbox to align buttons horizontally */
+    justify-content: space-between;
+}
+/* Styles for the comment body */
+.comment-body {
+    margin-bottom: 10px;
+}
+
+/* Styles for the button group */
+.btn-group {
+    display: flex; /* Use flexbox to align buttons horizontally */
+    gap: 10px; /* Add some spacing between buttons */
+}
+
+/* Styles for the buttons inside the button group */
+.btn-group a {
+    display: inline-block; /* Display buttons as block-level elements to take full width */
+    padding: 8px 12px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-group a:hover {
+    background-color: #0056b3; /* Change background color on hover */
+}
+.row-new {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust alignment as needed */
+}
+
+.column-new {
+    width: calc(50% - 10px); /* Subtract padding to prevent horizontal overflow */
+    padding: 10px;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+}
