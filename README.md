@@ -2,7 +2,7 @@
 
 Project Motivation
 
-In today's fast-paced world, maintaining meaningful and connected relationships, especially long-distance relationships (LDRs), can be challenging. The distance between partners often leads to feeling sorrow which emerges when the heartfelt desire to be reunited cannot be fulfilled, feeling a lack of shared activities, and feeling lonely. Inspired by personal experiences and a deep understanding of the struggles faced in long-distance relationships, the motivation behind creating this project is to bridge the gap and provide a comprehensive solution to enhance emotional connections, foster communication, and create memorable shared experiences for couples separated by distance.
+Long Distance Relationships can be a challenge because of its difficulty to maintain meaningful and connected relationships. The distance between partners often leads to feeling sorrow which emerges when the heartfelt desire to be reunited cannot be fulfilled, feeling a lack of shared activities, and feeling lonely. Inspired by personal experiences and a deep understanding of the struggles faced in long-distance relationships, the motivation behind creating this project is to bridge the gap and provide a comprehensive solution to enhance emotional connections, foster communication, and create memorable shared experiences for couples separated by distance.
 
 Features
 
