@@ -34,3 +34,5 @@ Features I want to implement in the future
 -Profile Image Feature / Editing their username to add more playfulness
 -Calculate Total Distance between couples to get familiar with Google Maps API
 -Create fun and interactive challenges that couples can complete together while apart. This could include trivia games or quizzes.
+![Screenshot (38)](https://github.com/kyoimura/Long-Distance-Relationship-App/assets/92063634/7e319070-c3d5-4178-b662-30108f0c09ad)
+![Screenshot (39)](https://github.com/kyoimura/Long-Distance-Relationship-App/assets/92063634/7a2087b6-28a3-429d-a817-f9b98cc20b64)
